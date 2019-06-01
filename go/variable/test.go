@@ -11,7 +11,7 @@ const i uint = 100
 
 //var a int, b int, c int // 不能这样写
 
-//str := "china" // 变量初始化简写只能在函数内
+//str := "china" // 简写变量初始化只能在函数内
 
 /*type MyFile struct {
 	F *os.File
