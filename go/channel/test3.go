@@ -15,7 +15,7 @@ func main() {
 	}()
 
 	<-endRunning
-	fmt.Println("reveive endRunning")
+	fmt.Println("receive endRunning")
 
 	return
 }
