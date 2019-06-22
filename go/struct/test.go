@@ -25,4 +25,7 @@ func main() {
 	t.ShowA()
 
 	// 输出是什么？ why?
+	fmt.Printf("%#v", t)
+	fmt.Println()
+	fmt.Printf("%T", t)
 }
