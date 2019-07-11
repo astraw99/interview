@@ -5,17 +5,29 @@ import (
 	"time"
 )
 
-var endRunning = make(chan bool, 1)
+var endRunning = make(chan int, 1)
 
 func main() {
 	go func() {
 		time.Sleep(3 * time.Second)
-		endRunning <- true
+		endRunning <- 1
 		fmt.Println("send to endRunning")
 	}()
 
-	<-endRunning
-	fmt.Println("receive endRunning")
+	close(endRunning)
+
+	select {
+	case v, ok := <-endRunning:
+		if !ok {
+			fmt.Println("chan closed")
+		} else {
+			fmt.Printf("receive endRunning: %v, ok-%v\n", v, ok)
+		}
+		/*default:
+		fmt.Println("default wait")*/
+	}
+
+	fmt.Println("finish")
 
 	return
 }

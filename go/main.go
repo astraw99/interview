@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"time"
 )
 
@@ -21,5 +22,6 @@ func main() {
 		}
 	}()
 
+	fmt.Println("num:", runtime.NumGoroutine())
 	time.Sleep(time.Second)
 }
