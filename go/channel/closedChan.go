@@ -52,5 +52,5 @@ func TestReadFromClosedChan(t *testing.T) {
 		fmt.Println(v)
 	}
 
-	// 为什么会一致输出0？
+	// 为什么会一直输出0？
 }
