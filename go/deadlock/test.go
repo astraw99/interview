@@ -1,12 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	c := make(chan int)
-	//c <- 99
-	go func() {
-		c <- 88
-	}()
-	fmt.Println(<-c)
+	ch := make(chan int, 3)
+
+	ch <- 1
+	ch <- 2
+	ch <- 3
+	ch <- 4 // 超过最大容量，阻塞main协程，产生deadlock
+
+	for v := range ch {
+		fmt.Println(v)
+	}
 }
