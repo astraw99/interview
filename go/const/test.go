@@ -7,5 +7,6 @@ const zero = 0.0
 
 func main() {
 	fmt.Printf("%T", a)
+	fmt.Println()
 	fmt.Printf("%T", zero)
 }

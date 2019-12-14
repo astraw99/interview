@@ -10,7 +10,7 @@ func main() {
 	ch <- 1
 	ch <- 1
 	ch <- 1
-	//close(ch)
+	//close(ch) // chan 不关闭则 range 永不退出
 	wg := sync.WaitGroup{}
 	wg.Add(1)
 
