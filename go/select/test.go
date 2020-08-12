@@ -22,7 +22,7 @@ func testSelectFor(chExit chan bool) {
 		select {
 		case v, ok := <-chExit:
 			if !ok {
-				fmt.Println("close channel 1", v)
+				fmt.Println("close chan 1", v)
 				break // can not break for loop
 			}
 
