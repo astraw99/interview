@@ -8,6 +8,7 @@ import (
 var quit chan struct{} = make(chan struct{})
 
 func f() {
+	// blocked
 	<-quit
 }
 

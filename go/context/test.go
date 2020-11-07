@@ -19,6 +19,7 @@ func chiHanBao(ctx context.Context) {
 	rand.Seed(time.Now().Unix())
 	for {
 		select {
+		// timeout 或 cancel() 都会 -> ctx.Done
 		case <-ctx.Done():
 			fmt.Println("stop \n")
 			return

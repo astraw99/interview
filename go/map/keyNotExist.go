@@ -6,5 +6,7 @@ type data struct {
 
 func main() {
 	m := map[string]*data{"x": {"one"}}
-	m["y"].name = "what?" //???  SIGSEGV(segmentation violation) 段错误
+
+	// ???  SIGSEGV(segmentation violation) 段错误
+	m["y"].name = "what?"
 }
