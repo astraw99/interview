@@ -13,9 +13,13 @@ func main() {
 	// 0 strconv.Atoi: parsing "115.2": invalid syntax
 	fmt.Println(pageNumInt, err)
 
-	strFloat := "abc2"
+	strFloat := ".2abc"
 	float, err := strconv.ParseFloat(strFloat, 64)
 
 	// 0 strconv.Atoi: parsing "abc2": invalid syntax
 	fmt.Println(float, err)
+
+	// 0 strconv.ParseInt: parsing "": invalid syntax
+	num, err := strconv.ParseInt("", 10, 64)
+	fmt.Println(num, err)
 }
