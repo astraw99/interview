@@ -18,5 +18,8 @@ func main() {
 
 	fmt.Println(runtime.NumGoroutine())
 
-	select {}
+	select {
+	//default: // if no default, will block forever
+
+	}
 }

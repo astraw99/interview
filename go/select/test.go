@@ -23,12 +23,17 @@ func testSelectFor(chExit chan bool) {
 		case v, ok := <-chExit:
 			if !ok {
 				fmt.Println("close chan 1", v)
-				break // can not break for loop
+				break // can not break for loop!!!
 			}
 
 			fmt.Println("ch1 val =", v)
 		default:
 			fmt.Println("default")
+		}
+
+		// 需要单独在 for 判断 chan closed
+		if _, ok := <-chExit; !ok {
+			break
 		}
 	}
 

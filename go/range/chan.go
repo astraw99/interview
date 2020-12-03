@@ -15,6 +15,7 @@ func main() {
 	wg.Add(1)
 
 	go func() {
+		//ch = nil // nil chan 会阻塞 range
 		for v := range ch {
 			fmt.Println(v)
 			if len(ch) == 0 {

@@ -10,7 +10,7 @@ func main() {
 		fallthrough
 	case false:
 		fmt.Println("The integer was <= 2")
-		fallthrough
+		//break (break 可省略)
 	default:
 		fmt.Println("default case")
 	}

@@ -19,8 +19,8 @@ func main() {
 		}
 	}(ch)
 
-	tick := time.NewTicker(1 * time.Second)
-	for i := 0; i < 20; i++ {
+	tick := time.NewTicker(2 * time.Second)
+	for i := 0; i < 5; i++ {
 		select {
 		case ch <- i:
 		}
@@ -29,8 +29,8 @@ func main() {
 		select {
 		case <-tick.C:
 			fmt.Println("tick timeout:", i)
-		default:
-
+		//default:
+		//	fmt.Println("tick default")
 		}
 
 		time.Sleep(200 * time.Millisecond)
@@ -38,4 +38,7 @@ func main() {
 
 	close(ch)
 	tick.Stop()
+
+
+	fmt.Println(time.December.String())
 }

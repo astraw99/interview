@@ -13,9 +13,13 @@ func main() {
 		fmt.Println(v)
 	}
 
-	/*for v := range t.C {
-		fmt.Println(v)
-	}*/
+	t.Stop() // just turn off ticker, not close channel!!
 
-	//t.Stop()
+	if len(t.C) == 0 {
+		fmt.Println("len0", t.C)
+	}
+
+	for v := range t.C {
+		fmt.Println(v) // deadlock: will not stop forever
+	}
 }
