@@ -15,5 +15,4 @@ func main() {
 
 	runtime.GOMAXPROCS(300)
 	fmt.Println(runtime.GOMAXPROCS(-1)) //prints: 256
-
 }
