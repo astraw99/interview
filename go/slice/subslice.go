@@ -26,4 +26,17 @@ func main() {
 	fmt.Println("dir2 =>", string(dir2)) //prints: dir2 => BBBBBBBBB (ok now)
 
 	fmt.Println("new path =>", string(path))
+
+
+	// =============================================
+
+	test := []string{"a", "b", "c", "d", "e"}
+	index := 4
+
+	test = append(test[:index], test[index + 1:]...)
+
+	// boundsSliceB    // s[x:y], 0 <= x <= y failed (but boundsSliceA didn't happen)
+	//fmt.Println(test[index + 1:]) // will panic?
+
+	fmt.Println(test)
 }
