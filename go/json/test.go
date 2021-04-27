@@ -14,6 +14,19 @@ type Test struct {
 	Body map[string]map[string]int `json:"body"`
 }
 
+type Project struct {
+	Key   string `json:"key,omitempty"` // del empty val
+	Value string `json:"-"` // ignore field
+	Name string `json:"-,"` // name to "-"
+	Num int64 `json:"num,string"` // convert to string: "num":"1"
+}
+
+type JiraHttpReqField struct {
+	Project `json:",inline"` // inline to flatten field
+	Summary     string `json:"summary"`
+	Description string `json:"description"`
+}
+
 func main() {
 	str := "{\"header\":{\"code\":200,\"msg\":\"success\",\"desc\":\"请求成功\",\"debug\":{\"cost_time\":\"51.622\"}},\"body\":{\"MIIN0002\":{\"14138\":0,\"16279\":0},\"MIIN0003\":{\"14138\":0,\"16279\":0}}}"
 	test := Test{}
@@ -23,4 +36,17 @@ func main() {
 
 	bytes, _ := json.Marshal(test)
 	fmt.Println(string(bytes))
+
+
+	dataProject := Project{
+		Key:   "",
+		Value: "val",
+	}
+	dataJiraHttpReqField := &JiraHttpReqField{
+		Project:     dataProject,
+		Summary:     "Summary",
+		Description: "Description",
+	}
+	data, _ := json.Marshal(dataJiraHttpReqField)
+	fmt.Println(string(data))
 }
