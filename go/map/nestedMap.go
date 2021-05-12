@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main()  {
+func main() {
 	// nested map
 	outerMap := make(map[string]map[string][]string)
 	outerMap["a"] = make(map[string][]string) // innerMap: will panic if not init!!
