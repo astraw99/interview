@@ -8,8 +8,9 @@ import (
 )
 
 func main() {
-	// ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(10))
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	//ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(1000000)) // duration
+	//ctx, cancel := context.WithTimeout(context.Background(), 0) // 0 => ctx.Done immediately
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	chiHanBao(ctx)
 	defer cancel()
 }
@@ -21,7 +22,7 @@ func chiHanBao(ctx context.Context) {
 		select {
 		// timeout 或 cancel() 都会 -> ctx.Done
 		case <-ctx.Done():
-			fmt.Println("stop \n")
+			fmt.Println("stop")
 			return
 		default:
 			incr := rand.Intn(5)
