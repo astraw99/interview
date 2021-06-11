@@ -21,7 +21,8 @@ func (stu *Student) Speak(think string) (talk string) {
 
 func main() {
 	// Student does not implement People (Speak method has pointer receiver)
-	var peo People = Student{}
+	var peo People = Student{} // wrong!
+	//var peo People = &Student{} // right
 	think := "bitch"
 	fmt.Println(peo.Speak(think))
 }
