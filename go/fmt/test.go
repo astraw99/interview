@@ -19,7 +19,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Printf("This %q is good.\n", "abc")
+	fmt.Printf("This %q is good.\n", "abc") // add double-quote "abc"
 
 	fmt.Printf("This %q is good.", 65) // ASCII value
 }
