@@ -23,12 +23,25 @@ import (
 
 func main() {
 	expireDuration := 7 * 24 * time.Hour
-	deleteTime, err := time.Parse("2006-01-02 15:04:05", "2021-07-16 16:03:34")
+	loc, err := time.LoadLocation("Local")
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
+	}
+	fmt.Println(loc)
+
+	deleteTimeUTC, err := time.Parse("2006-01-02 15:04:05", "2021-07-20 16:00:34")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(deleteTimeUTC) // UTC format
+
+	deleteTime, err := time.ParseInLocation("2006-01-02 15:04:05", "2021-07-20 16:00:34", time.Local)
+	if err != nil {
+		panic(err)
 	}
 
-	fmt.Println(deleteTime.Add(expireDuration)) // UTC format
+	fmt.Println(deleteTime) // CST format
+	fmt.Println(time.Now()) // CST format
 
 	fmt.Println(time.Now().After(deleteTime.Add(expireDuration)))
 }
