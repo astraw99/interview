@@ -14,4 +14,19 @@ func main() {
 	for i, v := range s {
 		fmt.Println(i, v)
 	}
+
+	var sl []string
+	var m map[string]string
+
+	// range skip nil slice
+	for i, v := range sl {
+		fmt.Println(i, v)
+	}
+
+	// range skip nil map
+	for k, v := range m {
+		fmt.Println(k, v)
+	}
+
+	fmt.Println("end")
 }
