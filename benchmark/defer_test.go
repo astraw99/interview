@@ -14,16 +14,40 @@
  * the License.
  */
 
-package main
+package benchmark
 
-import "fmt"
+import (
+	"sync"
+	"testing"
+)
 
-func main() {
-	const (
-		TYPE0 = 1 << iota // 1 << 0 = 1
-		TYPE1             // 1 << 1 = 2
-		TYPE2             // 1 << 2 = 4
-	)
+type structWithLock struct {
+	m sync.Mutex
+	n int64
+}
 
-	fmt.Println(TYPE0, TYPE1, TYPE2)
+func BenchmarkWithoutDeferUnLock(b *testing.B) {
+	s := structWithLock{}
+	for i := 0; i < b.N; i++ {
+		s.addWithoutDefer()
+	}
+}
+
+func BenchmarkWithDeferUnLock(b *testing.B) {
+	s := structWithLock{}
+	for i := 0; i < b.N; i++ {
+		s.addWithDefer()
+	}
+}
+
+func (s *structWithLock) addWithoutDefer() {
+	s.m.Lock()
+	s.n++
+	s.m.Unlock()
+}
+
+func (s *structWithLock) addWithDefer() {
+	s.m.Lock()
+	defer s.m.Unlock()
+	s.n++
 }
