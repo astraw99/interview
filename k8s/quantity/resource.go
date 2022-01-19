@@ -25,11 +25,21 @@ import (
 
 func main() {
 	requests := corev1.ResourceList{
-		corev1.ResourceCPU:    resource.MustParse(fmt.Sprintf("%d", 1)),
-		corev1.ResourceMemory: resource.MustParse(fmt.Sprintf("%dGi", 1)),
+		corev1.ResourceCPU:    resource.MustParse("1"),
+		corev1.ResourceMemory: resource.MustParse("1Gi"),
 	}
 
-	fmt.Println(requests.Cpu().Value())                         // Cpu.Value is decimal = 1
+	requests2 := corev1.ResourceList{
+		corev1.ResourceCPU:    resource.MustParse("100m"),
+		corev1.ResourceMemory: resource.MustParse("0.1Gi"),
+	}
+
+	fmt.Println(requests.Cpu().MilliValue())  // Cpu.Value is decimal = 1000
+	fmt.Println(requests2.Cpu().MilliValue()) // Cpu.Value is decimal = 100
+	fmt.Println(requests.Cpu().Value())       // Cpu.Value is decimal = 1
+	fmt.Println(requests2.Cpu().Value())      // Cpu.Value is decimal = 1
+
 	fmt.Println(requests.Memory().Value())                      // Memory.Value is byte = 1073741824
+	fmt.Println(requests2.Memory().Value())                     // Memory.Value is byte = 107374183
 	fmt.Println(requests.Memory().Value() / 1024 / 1024 / 1024) // = 1G
 }
