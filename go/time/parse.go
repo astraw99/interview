@@ -28,6 +28,9 @@ func main() {
 		panic(err)
 	}
 	fmt.Println(loc)
+	fmt.Println(time.Now().UTC())
+	fmt.Println(time.Now().Local())
+	fmt.Println(time.Now().Location())
 
 	deleteTimeUTC, err := time.Parse("2006-01-02 15:04:05", "2021-07-20 16:00:34")
 	if err != nil {
