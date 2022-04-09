@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 https://github.com/astraw99. All rights reserved.
+ * Copyright (C) 2022 https://github.com/astraw99. All rights reserved.
  *
  * Licensed under the BSD 3-Clause License (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the
@@ -16,12 +16,11 @@
 
 package main
 
-import "fmt"
+import "runtime"
 
 func main() {
-	fmt.Printf("This %q is good.\n", "abc") // This "abc" is good.
-
-	fmt.Printf("This %q is good.\n", 65) // ASCII value: This 'A' is good.
-
-	fmt.Printf("%-*sz\n", 10, "a") // 右侧自动填充 n 个空格
+	println(runtime.NumCPU())
+	println(runtime.GOMAXPROCS(runtime.NumCPU()))
+	println(runtime.NumGoroutine())
+	println(runtime.NumCgoCall())
 }
