@@ -24,4 +24,6 @@ func main() {
 
 	g.SetColor("white")
 	fmt.Println(g.GetJson())
+
+	//fmt.Println(&g.GetJson()) // can not take the address of func
 }
