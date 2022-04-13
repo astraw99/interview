@@ -30,7 +30,7 @@ func main() {
 	}
 
 	requests2 := corev1.ResourceList{
-		corev1.ResourceCPU:    resource.MustParse("100m"),
+		corev1.ResourceCPU:    resource.MustParse("100.1m"),
 		corev1.ResourceMemory: resource.MustParse("0.1Gi"),
 	}
 
