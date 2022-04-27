@@ -16,15 +16,15 @@ type Test struct {
 
 type Project struct {
 	Key   string `json:"key,omitempty"` // del empty val
-	Value string `json:"-"` // ignore field
-	Name string `json:"-,"` // name to "-"
-	Num int64 `json:"num,string"` // convert to string: "num":"1"
+	Value string `json:"-"`             // ignore field
+	Name  string `json:"-,"`            // name to "-"
+	Num   int64  `json:"num,string"`    // convert to string: "num":"1"
 }
 
 type JiraHttpReqField struct {
-	Project `json:",inline"` // inline to flatten field
-	Summary     string `json:"summary"`
-	Description string `json:"description"`
+	Project     `json:",inline"` // inline to flatten field
+	Summary     string           `json:"summary"`
+	Description string           `json:"description"`
 }
 
 func main() {
@@ -37,7 +37,6 @@ func main() {
 	bytes, _ := json.Marshal(test)
 	fmt.Println(string(bytes))
 
-
 	dataProject := Project{
 		Key:   "",
 		Value: "val",
@@ -49,4 +48,24 @@ func main() {
 	}
 	data, _ := json.Marshal(dataJiraHttpReqField)
 	fmt.Println(string(data))
+
+	testF()
+}
+
+func testF() {
+	str := []byte(`{"command":["echo hello","echo world"]}`)
+	payload := SubProcessPayload{}
+	err := json.Unmarshal(str, &payload)
+	fmt.Println(payload, err)
+
+	payload2 := SubProcessPayload{
+		Command: []string{"echo hello", "echo world"},
+	}
+	data, err := json.Marshal(&payload2)
+
+	fmt.Println(string(data), err)
+}
+
+type SubProcessPayload struct {
+	Command []string `json:"command"`
 }
