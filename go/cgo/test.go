@@ -20,5 +20,4 @@ func main() {
 	fmt.Println(string(*cs))
 
 	C.free(unsafe.Pointer(cs))
-
 }
