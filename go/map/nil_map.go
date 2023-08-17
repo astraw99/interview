@@ -22,6 +22,18 @@ func main() {
 	var ann map[string]string
 	//var ann = map[string]string{"key": "val"}
 	fmt.Println(HaveMapKey(ann), ann, len(ann))
+
+	fmt.Println(ann, len(ann["abc"]))
+
+	// map in struct
+	var a mapStruct
+	fmt.Println(a, a.m, len(a.m["abc"]), a.m == nil)
+	a.m["a"] = "b" // !! panic: assignment to entry in nil map
+}
+
+type mapStruct struct {
+	name string
+	m    map[string]string
 }
 
 func HaveMapKey(annotations map[string]string) bool {
