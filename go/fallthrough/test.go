@@ -14,4 +14,15 @@ func main() {
 	default:
 		fmt.Println("default case")
 	}
+
+	var a string
+	switch interface{}(a).(type) {
+	case string:
+		fmt.Println("string type")
+		//fallthrough // cannot fallthrough in type switch
+	case int:
+		fmt.Println("string type")
+		//fallthrough // cannot fallthrough in type switch, cannot fallthrough final case in switch
+	}
+	fmt.Println("end")
 }
