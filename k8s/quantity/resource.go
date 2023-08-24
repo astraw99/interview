@@ -50,6 +50,11 @@ func main() {
 		corev1.ResourceMemory: resource.MustParse("-1Gi"),
 	}
 
+	requests6 := corev1.ResourceList{
+		corev1.ResourceCPU:    resource.MustParse("1m"),
+		corev1.ResourceMemory: resource.MustParse("400m"),
+	}
+
 	fmt.Println("request1================")
 	fmt.Println(requests.Cpu().Value())                         // Cpu.Value is decimal = 1
 	fmt.Println(requests.Cpu().MilliValue())                    // Cpu.Value is decimal = 1000
@@ -75,4 +80,9 @@ func main() {
 	fmt.Println(requests5.Cpu().Value())      // Cpu.Value is decimal = -1
 	fmt.Println(requests5.Cpu().MilliValue()) // Cpu.Value is decimal = -1000
 	fmt.Println(requests5.Memory().Value())   // Memory.Value is byte = -1073741824
+
+	fmt.Println("request6================")
+	fmt.Println(requests6.Cpu().Value())      // Cpu.Value is decimal = 1
+	fmt.Println(requests6.Cpu().MilliValue()) // Cpu.Value is decimal = 1
+	fmt.Println(requests6.Memory().Value())   // Memory.Value is byte = 1 (0.4 byte > 1)
 }
