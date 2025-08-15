@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 https://github.com/astraw99. All rights reserved.
+ * Copyright (C) 2025 https://github.com/astraw99. All rights reserved.
  *
  * Licensed under the BSD 3-Clause License (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the
@@ -19,8 +19,7 @@ package main
 import "fmt"
 
 func main() {
-	// 1. execute go import (_) first in the current "main" package
-	// 2. then execute the init function in the current "main" package
-	// 3. last execute the main function
-	fmt.Println("hello world")
+	strSlice := []string{"a", "b", "c", "d"}
+	fmt.Printf("strSlice => %s\n", strSlice) // strSlice => [a b c d]
+	fmt.Printf("strSlice => %v\n", strSlice) // strSlice => [a b c d]
 }
